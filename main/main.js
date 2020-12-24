@@ -1,0 +1,42 @@
+$(()=>{
+    $(document.body)
+        .append(
+             $('<input>').attr('id','inp')
+        )
+        .append(
+            $('<button>')
+            .attr('id','btn')
+            .text('ADD')
+            .click((ev)=>{
+                $('#tasklist')
+                .append(
+                    $('<li>')
+                    .text(
+                        $('#inp').val()
+                    )
+                    .append(
+                        $('<button>').text('cancel')
+                        .click((ev)=>{
+                        $(ev.target).parent().remove();
+                         })
+                    )   
+                    .append(
+                        $('<button>').text('up')
+                        .click((ev)=>{
+                        $(ev.target).parent().insertBefore($(ev.target).parent().prev());
+                         })
+                    )
+                    .append(
+                        $('<button>').text('down')
+                        .click((ev)=>{
+                        $(ev.target).parent().insertAfter($(ev.target).parent().next());
+                        })
+                    )
+                )
+                $('#inp').val(' ')
+            })
+        )
+        .append(
+            $('<ul>').attr('id','tasklist')
+        )    
+})
